@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OtthonKereső - Találja meg álmai ingatlanát | Eladó és kiadó ingatlanok</title>
+    <meta name="description" content="Fedezze fel a legjobb eladó és kiadó ingatlanokat Magyarországon. Házak, lakások, új építésű ingatlanok széles választéka várja Önt!">
+    <meta name="keywords" content="ingatlan, ház, lakás, eladó, kiadó, ingatlanközvetítés, ingatlanpiac, új építésű, családi ház, panel, tégla, budapesti ingatlan">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXX-Y');
+    </script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --bg-color: #ecf0f1;
+            --text-color: #333;
+            --light-text-color: #7f8c8d;
+            --border-color: #bdc3c7;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .logo a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .menu-toggle.active + ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero.jpg') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 180px 20px 120px;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-form input[type="text"] {
+            padding: 15px 25px;
+            font-size: 18px;
+            width: 70%;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+        }
+
+        .search-form button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-form button:hover {
+            background-color: #c0392b;
+        }
+
+        .features {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            background-color: #fff;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item i {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var (--secondary-color);
+        }
+
+        .feature-item p {
+            color: var(--light-text-color);
+        }
+
+        .popular-listings {
+            padding: 100px 0;
+            background-color: var(--bg-color);
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .listing-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .listing-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .listing-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .listing-content {
+            padding: 20px;
+        }
+
+        .listing-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .listing-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .listing-details {
+            display: flex;
+            justify-content:space-between;
+            color: var(--light-text-color);
+            font-size: 14px;
+        }
+
+        .listing-details span {
+            display: flex;
+            align-items: center;
+        }
+
+        .listing-details i {
+            margin-right: 5px;
+        }
+
+        #about {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .about-text p {
+            font-size: 18px;
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-text a {
+            display: inline-block;
+            padding: 10px 30px;
+            font-size: 18px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .about-text a:hover {
+            background-color: #c0392b;
+        }
+
+        #contact {
+            padding: 100px 0;
+            background-color: var(--bg-color);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .contact-content p {
+            font-size: 18px;
+            color: var(--light-text-color);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .contact-form button {
+            padding: 15px;
+            font-size: 18px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover {
+            background-color: #c0392b;
+        }
+
+        .contact-map {
+            margin-top: 40px;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                padding: 20px 0;
+            }
+
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="#">OtthonKereső</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul id="menu">
+                        <li><a href="#hero">Kezdőlap</a></li>
+                        <li><a href="#features">Szolgáltatások</a></li>
+                        <li><a href="#popular-listings">Népszerű Ingatlanok</a></li>
+                        <li><a href="#about">Rólunk</a></li>
+                        <li><a href="#contact">Kapcsolat</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Találja meg álmai ingatlanát</h1>
+                <p>Fedezze fel a legjobb eladó és kiadó ingatlanokat Magyarországon.</p>
+                <form class="search-form">
+                    <input type="text" placeholder="Keresés az ingatlanok között">
+                    <button type="submit">Keresés</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Szolgáltatásaink</h2>
+            <div class="features-grid">
+                <div class="feature-item" data-aos="fade-up">
+                    <i class="fas fa-home"></i>
+                    <h3>Eladó Ingatlanok</h3>
+                    <p>Fedezze fel a legjobb eladó ingatlanokat a piacon. Találja meg álmai otthonát könnyedén!</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-key"></i>
+                    <h3>Kiadó Ingatlanok</h3>
+                    <p>Válogasson a legjobb kiadó ingatlanok között. Legyen az lakás vagy ház, nálunk megtalálja!</p>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-building"></i>
+                    <h3>Új Építésű Projektek</h3>
+                    <p>Tekintse meg legújabb építésű ingatlanjainkat, és találja meg az Önnek legmegfelelőbbet!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="popular-listings">
+        <div class="container">
+            <h2 class="section-title">Népszerű Ingatlanok</h2>
+            <div class="listings-grid">
+                <div class="listing-item" data-aos="fade-up">
+                    <div class="listing-image" style="background-image: url('house1.jpg');"></div>
+                    <div class="listing-content">
+                        <h3 class="listing-title">Családi ház Budapesten</h3>
+                        <div class="listing-price">120 000 000 Ft</div>
+                        <div class="listing-details">
+                            <span><i class="fas fa-bed"></i> 4 hálószoba</span>
+                            <span><i class="fas fa-bath"></i> 2 fürdőszoba</span>
+                            <span><i class="fas fa-expand"></i> 200 m²</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="listing-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="listing-image" style="background-image: url('apartment1.jpg');"></div>
+                    <div class="listing-content">
+                        <h3 class="listing-title">Modern lakás a belvárosban</h3>
+                        <div class="listing-price">60 000 000 Ft</div>
+                        <div class="listing-details">
+                            <span><i class="fas fa-bed"></i> 2 hálószoba</span>
+                            <span><i class="fas fa-bath"></i> 1 fürdőszoba</span>
+                            <span><i class="fas fa-expand"></i> 80 m²</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="listing-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="listing-image" style="background-image: url('villa1.jpg');"></div>
+                    <div class="listing-content">
+                        <h3 class="listing-title">Luxus villa a Balatonnál</h3>
+                        <div class="listing-price">300 000 000 Ft</div>
+                        <div class="listing-details">
+                            <span><i class="fas fa-bed"></i> 5 hálószoba</span>
+                            <span><i class="fas fa-bath"></i> 3 fürdőszoba</span>
+                            <span><i class="fas fa-expand"></i> 350 m²</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image" style="background-image: url('about-us.jpg');" data-aos="fade-right"></div>
+                <div class="about-text" data-aos="fade-left">
+                    <h2>Rólunk</h2>
+                    <p>Az OtthonKeresőnél küldetésünk, hogy megtaláljuk Önnek az ideális otthont. Szakértői csapatunk elkötelezett abban, hogy a lehető legjobb szolgáltatást nyújtsa, és segítsen Önnek megtalálni a tökéletes ingatlant. Legyen szó eladásról, bérlésről vagy új építésű projektről, mi mindenben támogatjuk Önt.</p>
+                    <a href="#contact">Lépjen velünk kapcsolatba</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Kapcsolat</h2>
+                <p>Ha bármilyen kérdése van, vagy további információra van szüksége, ne habozzon kapcsolatba lépni velünk. Az alábbi űrlap kitöltésével üzenhet nekünk, és mi hamarosan felvesszük Önnel a kapcsolatot.</p>
+                <form class="contact-form" action="submit_form.php" method="POST">
+                    <input type="text" name="name" placeholder="Név" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" rows="5" placeholder="Üzenet" required></textarea>
+                    <button type="submit">Küldés</button>
+                </form>
+                <div class="contact-map" data-aos="fade-up">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10712.459065708254!2d19.040236369755185!3d47.49791237927442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dc1f46d22fbb%3A0x8c220fa1434c5763!2sBudapest%2C%20Hungary!5e0!3m2!1sen!2sus!4v1624993759471!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 OtthonKereső. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
